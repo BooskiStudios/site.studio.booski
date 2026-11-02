@@ -205,6 +205,69 @@ p{margin:0 0 1rem}
 .log-go{font-size:.8rem;font-weight:800;color:var(--charcoal);white-space:nowrap}
 @media (max-width:640px){.log a{grid-template-columns:1fr;gap:.3rem}.log-go{display:none}}
 
+/* ---------- journal post ---------- */
+.post{--serif:"Fraunces",Georgia,"Times New Roman",serif}
+.post-banner{background:radial-gradient(60% 80% at 50% 40%,rgba(155,93,229,.35),transparent 75%),#17111F;
+  display:flex;justify-content:center;padding:clamp(.5rem,2vw,1rem) 1rem}
+.post-banner img{display:block;width:min(100%,340px);height:auto;
+  -webkit-mask-image:radial-gradient(closest-side,#000 90%,transparent 100%);
+  mask-image:radial-gradient(closest-side,#000 90%,transparent 100%)}
+.post-body{padding:clamp(1.4rem,4vw,2.4rem)}
+.post-meta{display:flex;align-items:center;gap:.8rem;margin-bottom:.9rem;font-size:.74rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+.post-tag{background:var(--lime);color:var(--charcoal);padding:.3rem .75rem;border-radius:999px;font-weight:800}
+.post h3{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.01em;margin-bottom:.8rem}
+.post h4{font-family:var(--serif);font-size:1.3rem;margin:1.8rem 0 .6rem}
+.post-lede{font-family:var(--serif);font-weight:600;font-size:clamp(1.1rem,2vw,1.3rem);line-height:1.4;color:var(--charcoal)}
+.post p{max-width:62ch;color:var(--ink-soft)}
+.post p strong,.post li strong{color:var(--charcoal)}
+.post-quote{margin:1.6rem 0;padding:.4rem 0 .4rem 1.2rem;border-left:4px solid var(--lime);
+  font-family:"Caveat",cursive;font-size:1.6rem;line-height:1.25;color:var(--charcoal);max-width:46ch}
+.post-list{margin:0 0 1rem;padding-left:1.2rem;color:var(--ink-soft);max-width:62ch}
+.post-list li{margin-bottom:.55rem}
+.post .post-sign{font-family:"Caveat",cursive;font-size:1.7rem;color:var(--charcoal);margin:1.4rem 0 0}
+.post-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.4rem}
+.post-hashtags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.post-hashtags span{font-size:.74rem;font-weight:700;padding:.35rem .8rem;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-soft)}
+
+/* journal carousel cards */
+.arrow-pair[hidden]{display:none}
+.arrow-btn[disabled]{opacity:.35;pointer-events:none}
+.jr-track{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.4rem .2rem 1.2rem;scrollbar-width:none}
+.jr-track::-webkit-scrollbar{display:none}
+.jr-card{flex:0 0 clamp(270px,30vw,360px);scroll-snap-align:start;display:flex;flex-direction:column;cursor:pointer;
+  background:var(--cream);border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;
+  transition:transform .18s ease,box-shadow .18s ease}
+.jr-card:hover{transform:translateY(-3px);box-shadow:4px 4px 0 var(--charcoal)}
+.jr-thumb{aspect-ratio:16/9;display:flex;justify-content:center;align-items:center;overflow:hidden;
+  background:radial-gradient(60% 80% at 50% 40%,rgba(155,93,229,.35),transparent 75%),#17111F}
+.jr-thumb img{display:block;height:100%;width:auto;
+  -webkit-mask-image:radial-gradient(closest-side,#000 90%,transparent 100%);
+  mask-image:radial-gradient(closest-side,#000 90%,transparent 100%)}
+.jr-card-body{display:flex;flex-direction:column;gap:.5rem;padding:1.1rem 1.2rem 1.3rem;flex:1}
+.jr-card .post-meta{margin-bottom:.1rem}
+.jr-card h3{font-size:1.15rem;line-height:1.2}
+.jr-card p{margin:0;font-size:.88rem;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.jr-read{margin-top:.7rem;align-self:flex-start;gap:.4rem}
+
+/* journal spotlight */
+html.jr-lock{overflow:hidden}
+.jr-modal{padding:0;border:0;border-radius:var(--radius);background:var(--cream);color:var(--charcoal);
+  width:min(900px,calc(100% - 2rem));max-width:none;max-height:calc(100dvh - 2rem);overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.jr-modal[open]{display:flex;flex-direction:column;animation:jrIn .3s cubic-bezier(.2,.8,.3,1)}
+.jr-modal::backdrop{background:rgba(23,17,31,.82);backdrop-filter:blur(6px);animation:jrFade .3s ease}
+@keyframes jrIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes jrFade{from{opacity:0}to{opacity:1}}
+.jr-scroll{overflow-y:auto;flex:1 1 auto;overscroll-behavior:contain}
+.jr-close{position:absolute;top:.8rem;right:.8rem;z-index:3;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  cursor:pointer;padding:0;background:var(--cream);border:2px solid var(--charcoal);transition:background .18s ease,transform .18s ease}
+.jr-close:hover{background:var(--lime);transform:scale(1.06)}
+.jr-modal-nav{flex:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 1.2rem;
+  border-top:1px solid var(--line-2);background:var(--cream);font-size:.8rem;font-weight:700;color:var(--ink-faint)}
+.jr-modal-nav[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.jr-modal[open],.jr-modal::backdrop{animation:none}}
+
 /* ---------- tools rail ---------- */
 .tool-stage{position:relative;margin-bottom:1.6rem}
 .tool-detail{display:none}
@@ -632,12 +695,18 @@ footer{background:var(--charcoal);color:rgba(244,240,230,.75);padding:clamp(2.4r
   <!-- ===== DEVLOG ===== -->
   <section class="section" id="devlog">
     <div class="wrap">
-      <div class="section-head" data-reveal><div><span class="eyebrow">Notes from the desk</span><h2>Journal</h2></div></div>
-      <div class="coming-soon-panel" data-reveal>
-        <div class="csp-icon" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#171717" stroke-width="1.6"/><path d="M12 7v5l3.2 1.9" stroke="#171717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Coming soon</h3>
-        <p>We're saving our updates for when there's something real to show. Devlogs, behind-the-scenes notes and progress reports will land here soon.</p>
+      <div class="section-head" data-reveal>
+        <div><span class="eyebrow">Notes from the desk</span><h2>Journal</h2></div>
+        <div class="arrow-pair" id="journal-arrows" hidden>
+          <button class="arrow-btn journal-prev" type="button" aria-label="Previous journal entries">
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M9.5 1L3 7l6.5 6" fill="none" stroke="#171717" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="arrow-btn journal-next" type="button" aria-label="Next journal entries">
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3.5 1L10 7l-6.5 6" fill="none" stroke="#171717" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
       </div>
+      <div class="jr-track" id="journal-track" data-reveal></div>
     </div>
   </section>
 
@@ -740,6 +809,88 @@ footer{background:var(--charcoal);color:rgba(244,240,230,.75);padding:clamp(2.4r
   </div>
 </footer>
 
+<dialog class="jr-modal" id="journal-modal" aria-label="Journal entry">
+  <button class="jr-close" type="button" aria-label="Close journal entry">
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="#171717" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </button>
+  <div class="jr-scroll" id="journal-modal-body"></div>
+  <div class="jr-modal-nav" id="journal-modal-nav" hidden>
+    <button class="btn btn-outline btn-sm" type="button" id="journal-modal-prev">&larr; Previous</button>
+    <span id="journal-modal-count" aria-live="polite"></span>
+    <button class="btn btn-outline btn-sm" type="button" id="journal-modal-next">Next &rarr;</button>
+  </div>
+</dialog>
+
+<script>
+const POSTS = [
+  {
+    id: `crooked-cauldron-announcement`,
+    tag: `Announcement`,
+    date: `2026-11-02`,
+    dateLabel: `2 November 2026`,
+    title: `Something's brewing: meet Crooked Cauldron`,
+    excerpt: `We've been keeping a secret, and it's starting to bubble over. Meet our first game: a cosy, curious little alchemy shop.`,
+    image: `assets/crooked-cauldron/logo.jpg`,
+    imageAlt: `Crooked Cauldron logo`,
+    body: `<p class="post-lede">Not every potion goes to plan. That's part of the magic.</p>
+<p>We've been keeping a secret, and it's starting to bubble over. Today we're thrilled to introduce our first game: <strong>Crooked Cauldron</strong>, a cosy, curious little alchemy shop where strange ingredients, bubbling cauldrons and questionable experiments are all part of the job.</p>
+<h4>So, what is it?</h4>
+<p>Run a curious little alchemy shop! Experiment with magical ingredients, brew mysterious potions, fulfil peculiar customer requests and build your reputation as a master alchemist. Just try not to blow up the shop...</p>
+<p>You'll step behind the counter and become the shop's resident alchemist. Gather unusual ingredients, toss them into your cauldron, experiment with magical combinations and stir up all sorts of wonderful concoctions. Keep your fire burning, discover the secrets hidden within your ingredients and brew potions to satisfy the strange requests of your customers. Earn your coins, improve your shop and build a reputation as the finest potion maker around.</p>
+<p>But remember: in alchemy, things don't always go according to plan...</p>
+<blockquote class="post-quote">Somewhere, tucked away in a curious little corner of the world... there's a shop where almost anything can be brewed.</blockquote>
+<h4>What you'll be getting up to</h4>
+<ul class="post-list">
+<li><strong>Brew your own potions.</strong> Experiment with different ingredients and discover the magical properties hidden within them.</li>
+<li><strong>Get hands-on.</strong> Physically handle ingredients, tend your cauldron and stir your brews to perfection.</li>
+<li><strong>Serve curious customers.</strong> Fulfil unusual potion requests and earn rewards for your creations.</li>
+<li><strong>Build your business.</strong> Earn money, purchase supplies and upgrade your little corner of the magical world.</li>
+<li><strong>Discover new possibilities.</strong> Expand your knowledge of alchemy, uncover ingredients and experiment with new combinations.</li>
+</ul>
+<h4>What's next?</h4>
+<p>Crooked Cauldron is in development, and we can't wait to share more. We'll be posting updates here as the shop takes shape, so keep an eye on this space. In the meantime, you can find out more on the game's page and say hello on social media with <strong>#CrookedCauldron</strong>.</p>
+<p>Thank you for stopping by our little corner of the world. Mind the cauldron.</p>
+<p class="post-sign">Brew Something Wonderful. Hopefully.</p>
+<div class="post-actions">
+<a class="btn btn-lime" href="#crooked-cauldron" data-close-modal>Visit the shop</a>
+<a class="btn btn-outline" href="https://www.steam.com/" target="_blank" rel="noopener noreferrer">View on Steam</a>
+</div>
+<div class="post-hashtags" aria-label="Hashtags"><span>#CrookedCauldron</span><span>#IndieGame</span><span>#IndieDev</span><span>#CozyGaming</span><span>#GameDev</span></div>`
+  },
+];
+
+function postThumbHtml(p){
+  return p.image ? '<img src="' + p.image + '" alt="' + (p.imageAlt || '') + '" width="768" height="768" loading="lazy">' : '';
+}
+
+function renderJournal(){
+  var host = document.getElementById("journal-track");
+  if (!host) return;
+  host.innerHTML = POSTS.map(function(p, i){
+    return '<article class="jr-card" data-post="' + i + '">'
+      + '<div class="jr-thumb">' + postThumbHtml(p) + '</div>'
+      + '<div class="jr-card-body">'
+      + '<div class="post-meta"><span class="post-tag">' + p.tag + '</span><time datetime="' + p.date + '">' + p.dateLabel + '</time></div>'
+      + '<h3>' + p.title + '</h3>'
+      + '<p>' + p.excerpt + '</p>'
+      + '<button class="btn btn-outline btn-sm jr-read" type="button" data-post="' + i + '" aria-label="Read &ldquo;' + p.title.replace(/"/g, '&quot;') + '&rdquo;">Read the entry'
+      + ' <svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+      + '</div></article>';
+  }).join("");
+}
+
+function postFullHtml(p){
+  return '<article class="post">'
+    + (p.image ? '<div class="post-banner">' + postThumbHtml(p) + '</div>' : '')
+    + '<div class="post-body">'
+    + '<div class="post-meta"><span class="post-tag">' + p.tag + '</span><time datetime="' + p.date + '">' + p.dateLabel + '</time></div>'
+    + '<h3 id="jr-modal-title">' + p.title + '</h3>'
+    + p.body
+    + '</div></article>';
+}
+
+renderJournal();
+</script>
 <script>
 const GAMES = [
   {
@@ -1151,6 +1302,70 @@ renderTools();
     window.addEventListener("resize", railUpdate);
     railUpdate();
   }
+
+  // journal: carousel arrows + spotlight modal
+  var jTrack = document.getElementById("journal-track");
+  var jArrows = document.getElementById("journal-arrows");
+  var jPrev = document.querySelector(".journal-prev");
+  var jNext = document.querySelector(".journal-next");
+  function jStep(){ var c = jTrack && jTrack.querySelector(".jr-card"); return c ? c.getBoundingClientRect().width + 18 : 320; }
+  function jUpdate(){
+    if (!jTrack || !jArrows) return;
+    var max = jTrack.scrollWidth - jTrack.clientWidth;
+    jArrows.hidden = max <= 4;
+    jPrev.disabled = jTrack.scrollLeft < 8;
+    jNext.disabled = jTrack.scrollLeft > max - 8;
+  }
+  if (jTrack && jPrev && jNext){
+    jPrev.addEventListener("click", function(){ jTrack.scrollBy({ left: -jStep(), behavior: reduced ? "auto" : "smooth" }); });
+    jNext.addEventListener("click", function(){ jTrack.scrollBy({ left: jStep(), behavior: reduced ? "auto" : "smooth" }); });
+    jTrack.addEventListener("scroll", jUpdate, { passive: true });
+    window.addEventListener("resize", jUpdate);
+    jUpdate();
+  }
+
+  var jModal = document.getElementById("journal-modal");
+  var jBody = document.getElementById("journal-modal-body");
+  var jNav = document.getElementById("journal-modal-nav");
+  var jCount = document.getElementById("journal-modal-count");
+  var jIndex = 0;
+  var jOpener = null;
+
+  function jShow(i){
+    jIndex = (i + POSTS.length) % POSTS.length;
+    jBody.innerHTML = postFullHtml(POSTS[jIndex]);
+    jBody.scrollTop = 0;
+    jModal.setAttribute("aria-labelledby", "jr-modal-title");
+    jNav.hidden = POSTS.length < 2;
+    jCount.textContent = (jIndex + 1) + " of " + POSTS.length;
+  }
+  function jOpen(i, opener){
+    if (!jModal || typeof jModal.showModal !== "function") return;
+    jOpener = opener || null;
+    jShow(i);
+    document.documentElement.classList.add("jr-lock");
+    jModal.showModal();
+  }
+  if (jModal){
+    jModal.addEventListener("close", function(){
+      document.documentElement.classList.remove("jr-lock");
+      if (jOpener) jOpener.focus({ preventScroll: true });
+    });
+    jModal.addEventListener("click", function(ev){
+      if (ev.target === jModal || ev.target.closest(".jr-close") || ev.target.closest("[data-close-modal]")) jModal.close();
+    });
+    jModal.addEventListener("keydown", function(ev){
+      if (ev.key === "Escape"){ ev.preventDefault(); jModal.close(); }
+    });
+    document.getElementById("journal-modal-prev").addEventListener("click", function(){ jShow(jIndex - 1); });
+    document.getElementById("journal-modal-next").addEventListener("click", function(){ jShow(jIndex + 1); });
+  }
+  if (jTrack) jTrack.addEventListener("click", function(ev){
+    var card = ev.target.closest(".jr-card");
+    if (!card) return;
+    var btn = card.querySelector(".jr-read");
+    jOpen(parseInt(card.getAttribute("data-post"), 10), btn);
+  });
 
   // contact form -> mailto
   var sendBtn = document.getElementById("send");
